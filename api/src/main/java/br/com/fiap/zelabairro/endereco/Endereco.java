@@ -25,4 +25,13 @@ public class Endereco {
         this.uf = corpo.uf();
         this.cep = corpo.cep();
     }
+
+    public void atualizarInformacoes(EnderecoDto corpo) {
+        this.logradouro = corpo.logradouro();
+        this.numero = corpo.numero();
+        this.bairro = corpo.bairro();
+        this.cidade = corpo.cidade();
+        this.uf = corpo.uf();
+        this.cep = corpo.cep();
+    }
 }

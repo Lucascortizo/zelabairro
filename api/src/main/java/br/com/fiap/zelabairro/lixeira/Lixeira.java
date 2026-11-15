@@ -35,4 +35,14 @@ public class Lixeira {
         this.nivelAtual = 0;
         this.ativo = true;
     }
+
+    public void atualizarInformacoes(LixeiraDto corpo) {
+        this.codigo = corpo.codigo();
+        this.tipo = corpo.tipo();
+        this.endereco.atualizarInformacoes(corpo.endereco());
+    }
+
+    public void excluir() {
+        this.ativo = false;
+    }
 }
