@@ -1,0 +1,18 @@
+# api (Java / Maven)
+api/target/
+api/.mvn/wrapper/maven-wrapper.jar
+
+# mobile (Expo)
+mobile/node_modules/
+mobile/.expo/
+
+# ia (Jupyter)
+.ipynb_checkpoints/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Segredos (senhas só em variáveis de ambiente)
+.env
