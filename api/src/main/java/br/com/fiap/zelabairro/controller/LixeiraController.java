@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fiap.zelabairro.erro.ErroDto;
 import br.com.fiap.zelabairro.lixeira.Lixeira;
 import br.com.fiap.zelabairro.lixeira.LixeiraDto;
 import br.com.fiap.zelabairro.lixeira.LixeiraRepository;
@@ -31,7 +32,12 @@ public class LixeiraController {
     private LixeiraRepository repository;
 
     @PostMapping
-    public ResponseEntity<Lixeira> cadastrar(@RequestBody @Valid LixeiraDto corpo) {
+    public ResponseEntity<?> cadastrar(@RequestBody @Valid LixeiraDto corpo) {
+        // Confere todas as lixeiras, inclusive as excluídas, porque o banco não aceita código repetido
+        if (repository.existsByCodigo(corpo.codigo())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(new ErroDto("Já existe uma lixeira com o código " + corpo.codigo() + "."));
+        }
         Lixeira lixeira = new Lixeira(corpo);
         repository.save(lixeira);
         return ResponseEntity.status(HttpStatus.CREATED).body(lixeira);
@@ -52,10 +58,14 @@ public class LixeiraController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Lixeira> atualizar(@PathVariable Long id, @RequestBody @Valid LixeiraDto corpo) {
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody @Valid LixeiraDto corpo) {
         Optional<Lixeira> encontrada = repository.findByIdAndAtivoTrue(id);
         if (encontrada.isEmpty()) {
             return ResponseEntity.notFound().build();
+        }
+        if (repository.existsByCodigoAndIdNot(corpo.codigo(), id)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(new ErroDto("Já existe outra lixeira com o código " + corpo.codigo() + "."));
         }
         Lixeira lixeira = encontrada.get();
         lixeira.atualizarInformacoes(corpo);

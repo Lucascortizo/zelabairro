@@ -42,6 +42,10 @@ public class Lixeira {
         this.endereco.atualizarInformacoes(corpo.endereco());
     }
 
+    public void atualizarNivel(Integer nivelPercentual) {
+        this.nivelAtual = nivelPercentual;
+    }
+
     public void excluir() {
         this.ativo = false;
     }

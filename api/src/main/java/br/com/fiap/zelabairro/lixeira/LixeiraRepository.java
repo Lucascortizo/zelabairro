@@ -10,4 +10,10 @@ public interface LixeiraRepository extends JpaRepository<Lixeira, Long> {
     Page<Lixeira> findAllByAtivoTrue(Pageable paginacao);
 
     Optional<Lixeira> findByIdAndAtivoTrue(Long id);
+
+    Optional<Lixeira> findByCodigoAndAtivoTrue(String codigo);
+
+    boolean existsByCodigo(String codigo);
+
+    boolean existsByCodigoAndIdNot(String codigo, Long id);
 }
