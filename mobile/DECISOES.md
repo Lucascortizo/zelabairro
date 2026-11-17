@@ -38,7 +38,11 @@ Bairro, cidade e UF já vêm preenchidos com Jardim Paulista, São Paulo e SP, p
 
 ## Foto e permissão
 
-A foto vem da galeria com o expo-image-picker. Antes de abrir a galeria, o app pede a permissão. Se a pessoa negar, aparece um aviso explicando que a foto é opcional e como liberar o acesso nas configurações. O app continua funcionando sem foto.
+A foto vem da galeria com o expo-image-picker. Quando a pessoa toca em Escolher foto, o app primeiro confere se a permissão já foi dada. Se já foi, a galeria abre direto. Se ainda não, aparece uma mensagem explicando que o app usa a galeria só para anexar uma foto do problema. O pedido do sistema só aparece depois que a pessoa toca em Continuar.
+
+Se a pessoa negar, aparece um aviso dizendo que a foto é opcional, com um botão Abrir ajustes. Ele chama Linking.openSettings() e leva direto para as configurações do app. Fiz isso porque, depois de negado, o celular não mostra o pedido de novo, e a única forma de liberar é pelos ajustes. O app continua funcionando sem foto.
+
+No app.json, coloquei o texto da permissão de fotos (photosPermission). É a explicação que o sistema mostra quando o app é instalado fora do Expo Go.
 
 A foto vai para a API como texto em base64, no formato "data:image/jpeg;base64,...". Escolhi esse formato porque o app e o portal conseguem mostrar a imagem direto, sem montar nada. Para a foto ficar leve, uso qualidade baixa (0.3) e corte na hora de escolher.
 

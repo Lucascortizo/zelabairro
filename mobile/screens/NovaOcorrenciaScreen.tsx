@@ -1,6 +1,6 @@
 import { useState, useEffect, type JSX } from 'react';
 import {
-  View, Text, Image, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform, Alert, StyleSheet,
+  View, Text, Image, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform, Alert, Linking, StyleSheet,
 } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import * as ImagePicker from 'expo-image-picker';
@@ -45,17 +45,50 @@ const NovaOcorrenciaScreen = ({ navigation }: Props): JSX.Element => {
     setErros((atual) => ({ ...atual, tipo: '' }));
   };
 
+  // depois de negar, o celular não mostra mais o pedido: só dá para liberar nos ajustes
+  const mostrarAvisoAjustes = (): void => {
+    Alert.alert(
+      'Sem acesso à galeria',
+      'A foto é opcional. Para anexar uma, libere o acesso às fotos nos ajustes do celular.',
+      [
+        { text: 'Agora não', style: 'cancel' },
+        { text: 'Abrir ajustes', onPress: () => Linking.openSettings() },
+      ],
+    );
+  };
+
+  const pedirPermissao = async (): Promise<void> => {
+    const resposta: ImagePicker.MediaLibraryPermissionResponse = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (resposta.granted) {
+      await abrirGaleria();
+    } else {
+      mostrarAvisoAjustes();
+    }
+  };
+
   const escolherFoto = async (): Promise<void> => {
-    // primeiro pede a permissão; sem ela a galeria não abre
-    const permissao: ImagePicker.MediaLibraryPermissionResponse = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (!permissao.granted) {
-      Alert.alert(
-        'Sem acesso à galeria',
-        'A foto é opcional. Para anexar uma, permita o acesso às fotos nas configurações do celular.',
-      );
+    // primeiro confere se a permissão já foi dada antes, sem perguntar nada
+    const atual: ImagePicker.MediaLibraryPermissionResponse = await ImagePicker.getMediaLibraryPermissionsAsync();
+    if (atual.granted) {
+      await abrirGaleria();
       return;
     }
+    if (!atual.canAskAgain) {
+      mostrarAvisoAjustes();
+      return;
+    }
+    // explica por que precisa da galeria antes do pedido do sistema aparecer
+    Alert.alert(
+      'Acesso às suas fotos',
+      'O ZelaBairro usa a galeria só para você anexar uma foto do problema. A foto ajuda a subprefeitura a entender o que aconteceu.',
+      [
+        { text: 'Agora não', style: 'cancel' },
+        { text: 'Continuar', onPress: () => pedirPermissao() },
+      ],
+    );
+  };
 
+  const abrirGaleria = async (): Promise<void> => {
     // quality baixa e base64: a foto vai como texto dentro do JSON, então precisa ser leve
     const resultado: ImagePicker.ImagePickerResult = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],

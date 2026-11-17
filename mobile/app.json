@@ -20,6 +20,15 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O ZelaBairro usa suas fotos só para você anexar uma imagem do problema na ocorrência."
+        }
+      ],
+      "expo-font"
+    ]
   }
 }
