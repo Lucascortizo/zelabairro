@@ -24,7 +24,7 @@ Um sensor de distância na lixeira mede o quanto ela está cheia e manda a leitu
 
 ## O que cada parte faz
 
-- api: API em Spring Boot com MySQL. Guarda as lixeiras, as leituras do sensor, as ocorrências e as previsões. As outras partes conversam com ela.
+- [api](api/): API em Spring Boot com MySQL. Guarda as lixeiras, as leituras do sensor, as ocorrências e as previsões. As outras partes conversam com ela.
 - iot: ESP32 com o sensor HC-SR04 no Wokwi. Mede o nível da lixeira e envia por MQTT. O Node-RED recebe a mensagem e manda para a API.
 - ia: notebook em Python com uma árvore de decisão. Prevê se a lixeira vai transbordar em 24 horas e envia a previsão para a API.
 - mobile: app em React Native para o morador abrir ocorrências com foto e ver as lixeiras.
