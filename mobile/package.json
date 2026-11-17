@@ -1,6 +1,9 @@
 {
   "name": "zelabairro-mobile",
   "version": "1.0.0",
+  "authors": [
+    "Lucas Cortizo (RM 559734)"
+  ],
   "main": "index.ts",
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
