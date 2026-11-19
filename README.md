@@ -28,9 +28,9 @@ Um sensor de distância na lixeira mede o quanto ela está cheia e manda a leitu
 - iot: ESP32 com o sensor HC-SR04 no Wokwi. Mede o nível da lixeira e envia por MQTT. O Node-RED recebe a mensagem e manda para a API.
 - ia: notebook em Python com uma árvore de decisão. Prevê se a lixeira vai transbordar em 24 horas e envia a previsão para a API.
 - [mobile](mobile/): app em React Native para o morador abrir ocorrências com foto e ver as lixeiras.
-- portal: página em HTML e JavaScript que mostra as ocorrências e as lixeiras. Fica hospedada no IIS.
+- [portal](portal/): página em HTML e JavaScript que mostra as ocorrências e as lixeiras. Fica hospedada no IIS.
 - desktop: programa em C# para a subprefeitura cadastrar ocorrências recebidas por telefone. Funciona sem internet e salva os dados em CSV. Fica em um repositório separado.
-- infra: configuração do Windows Server com AD, DNS e IIS.
+- [infra](infra/): configuração do Windows Server com AD, DNS e IIS.
 - docs: relatório de segurança, diagrama Archimate e documento de TQA.
 
 ## Link do repositório
