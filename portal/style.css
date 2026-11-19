@@ -1,0 +1,200 @@
+/* Mesmas cores do app mobile (mobile/theme.ts) */
+:root {
+  --primaria: #2BB673;
+  --primaria-suave: rgba(43, 182, 115, 0.18);
+  --fundo: #0F1512;
+  --cartao: #18211C;
+  --borda: #27352D;
+  --texto: #E8F1EC;
+  --apagado: #93A59A;
+  --erro: #FF6B6B;
+  --amarelo: #F2C94C;
+  --amarelo-suave: rgba(242, 201, 76, 0.18);
+  --vermelho: #EB5757;
+  --vermelho-suave: rgba(235, 87, 87, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--fundo);
+  color: var(--texto);
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.4;
+}
+
+.topo {
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--borda);
+}
+
+.topo h1 {
+  margin: 0;
+  color: var(--primaria);
+}
+
+.topo p {
+  margin: 6px 0 0;
+  color: var(--apagado);
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.secao {
+  margin-top: 32px;
+}
+
+.secao-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.secao-topo h2 {
+  margin: 0;
+}
+
+.legenda {
+  margin: 6px 0 0;
+  color: var(--apagado);
+  font-size: 14px;
+}
+
+.botao {
+  background-color: var(--primaria);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.botao:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Carregando, erro e vazio usam o mesmo parágrafo, com uma classe para cada caso */
+.mensagem {
+  margin: 16px 0 0;
+  padding: 14px;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background-color: var(--cartao);
+  color: var(--apagado);
+}
+
+.mensagem.erro {
+  color: var(--erro);
+  border-color: var(--erro);
+}
+
+.lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.cartao {
+  background-color: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.cartao-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cartao p {
+  margin: 6px 0 0;
+}
+
+.detalhe {
+  color: var(--apagado);
+  font-size: 13px;
+}
+
+.etiqueta {
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--apagado);
+}
+
+.status-aberta {
+  color: var(--vermelho);
+  border-color: var(--vermelho);
+  background-color: var(--vermelho-suave);
+}
+
+.status-andamento {
+  color: var(--amarelo);
+  border-color: var(--amarelo);
+  background-color: var(--amarelo-suave);
+}
+
+/* Barra de nível: o fundo cinza e, dentro, a parte colorida com a largura do nível */
+.barra-fundo {
+  height: 10px;
+  margin-top: 12px;
+  border-radius: 5px;
+  background-color: var(--borda);
+  overflow: hidden;
+}
+
+.barra {
+  height: 100%;
+  border-radius: 5px;
+}
+
+.nivel-texto {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.nivel-verde {
+  background-color: var(--primaria);
+  color: var(--primaria);
+}
+
+.nivel-amarelo {
+  background-color: var(--amarelo);
+  color: var(--amarelo);
+}
+
+.nivel-vermelho {
+  background-color: var(--vermelho);
+  color: var(--vermelho);
+}
+
+/* O texto do nível só usa a cor, sem o fundo */
+.nivel-texto.nivel-verde,
+.nivel-texto.nivel-amarelo,
+.nivel-texto.nivel-vermelho {
+  background-color: transparent;
+}
+
+.rodape {
+  margin-top: 48px;
+  padding: 20px 32px;
+  border-top: 1px solid var(--borda);
+  color: var(--apagado);
+  font-size: 13px;
+  text-align: center;
+}

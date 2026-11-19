@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZelaBairro - Painel da zeladoria</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topo">
+    <h1>ZelaBairro</h1>
+    <p>Painel da zeladoria do Jardim Paulista: nível das lixeiras e ocorrências que ainda não foram resolvidas.</p>
+  </header>
+
+  <main>
+    <section class="secao">
+      <div class="secao-topo">
+        <h2>Lixeiras</h2>
+        <button type="button" id="atualizar-lixeiras" class="botao">Atualizar</button>
+      </div>
+      <p class="legenda">
+        Verde abaixo de 50%, amarelo de 50% a 80% e vermelho acima de 80%, as mesmas faixas dos LEDs do sensor.
+      </p>
+      <p id="mensagem-lixeiras" class="mensagem" hidden></p>
+      <div id="lista-lixeiras" class="lista"></div>
+    </section>
+
+    <section class="secao">
+      <div class="secao-topo">
+        <h2>Ocorrências abertas</h2>
+        <button type="button" id="atualizar-ocorrencias" class="botao">Atualizar</button>
+      </div>
+      <p id="mensagem-ocorrencias" class="mensagem" hidden></p>
+      <div id="lista-ocorrencias" class="lista"></div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    ZelaBairro, Global Solution FIAP 2026.2. Lucas Cortizo, RM 559734.
+  </footer>
+</body>
+</html>
