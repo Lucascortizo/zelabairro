@@ -75,6 +75,10 @@ Para conferir, usei hostname, ipconfig /all e Get-ADDomain.
 
 Evidências: 01-hostname-ipconfig.png e 02-dominio-ad.png
 
+![01-hostname-ipconfig.png](evidencias/01-hostname-ipconfig.png)
+
+![02-dominio-ad.png](evidencias/02-dominio-ad.png)
+
 ### 2. DNS
 
 Criei o nome do site apontando para o servidor e um encaminhador para a VM continuar acessando a internet:
@@ -85,6 +89,10 @@ Criei o nome do site apontando para o servidor e um encaminhador para a VM conti
 
 Evidências: 03-nslookup.png e 04-dns-zona.png
 
+![03-nslookup.png](evidencias/03-nslookup.png)
+
+![04-dns-zona.png](evidencias/04-dns-zona.png)
+
 ### 3. Site no IIS
 
 Criei a pasta C:\Sites\ZelaBairro e copiei para ela os arquivos da pasta portal/ (index.html, style.css e app.js). O portal é só HTML, CSS e JavaScript, então a única dependência é o IIS com conteúdo estático, que já vem com o Web-Server. Por isso o pool fica sem .NET (No Managed Code).
@@ -94,6 +102,8 @@ Criei a pasta C:\Sites\ZelaBairro e copiei para ela os arquivos da pasta portal/
     New-Website -Name ZelaBairro -HostHeader zelabairro.corp.local -Port 80 -PhysicalPath C:\Sites\ZelaBairro -ApplicationPool ZelaBairroPool
 
 Evidência: 05-iis-site.png
+
+![05-iis-site.png](evidencias/05-iis-site.png)
 
 ### 4. Permissões NTFS
 
@@ -106,6 +116,8 @@ Assim, mesmo que alguém consiga explorar o site, a conta do IIS não consegue g
 
 Evidência: 06-ntfs.png
 
+![06-ntfs.png](evidencias/06-ntfs.png)
+
 ### 5. Teste de conexão e funcionamento
 
     Test-NetConnection zelabairro.corp.local -Port 80
@@ -114,6 +126,10 @@ Evidência: 06-ntfs.png
 O primeiro testa o site no IIS e o segundo testa a API no meu computador. Os dois deram TcpTestSucceeded True. Depois abri o portal no Edge da VM e ele mostrou as lixeiras e as ocorrências vindas da API.
 
 Evidências: 07-test-netconnection.png e 08-portal-no-iis.png
+
+![07-test-netconnection.png](evidencias/07-test-netconnection.png)
+
+![08-portal-no-iis.png](evidencias/08-portal-no-iis.png)
 
 ### 6. Monitoramento
 
@@ -125,6 +141,10 @@ Criei um conjunto de alertas no Monitor de Desempenho. Ele confere os valores a 
 Os limites são CPU acima de 80%, menos de 500 MB de memória livre e menos de 15% de espaço livre no disco C:. Para testar, deixei a CPU em 100% com dois loops em PowerShell. O alerta apareceu no Visualizador de Eventos (Diagnosis-PLA, evento 2031).
 
 Evidências: 09-perfmon-alertas.png e 10-alerta-cpu-evento.png
+
+![09-perfmon-alertas.png](evidencias/09-perfmon-alertas.png)
+
+![10-alerta-cpu-evento.png](evidencias/10-alerta-cpu-evento.png)
 
 ### 7. Tolerância a falhas e teste de falha
 
@@ -144,11 +164,23 @@ Teste do serviço: derrubei o processo do W3SVC. O serviço não voltou sozinho.
 
 Evidências: 11-recuperacao-servico.png, 12-teste-falha-pool.png, 13-recuperacao-servico-interface.png, 14-eventos-falha.png e 16-teste-servico-sem-recuperacao.png
 
+![11-recuperacao-servico.png](evidencias/11-recuperacao-servico.png)
+
+![12-teste-falha-pool.png](evidencias/12-teste-falha-pool.png)
+
+![13-recuperacao-servico-interface.png](evidencias/13-recuperacao-servico-interface.png)
+
+![14-eventos-falha.png](evidencias/14-eventos-falha.png)
+
+![16-teste-servico-sem-recuperacao.png](evidencias/16-teste-servico-sem-recuperacao.png)
+
 ### 8. Logs
 
 Usei o Visualizador de Eventos para acompanhar os alertas (Diagnosis-PLA) e as falhas (System). O IIS grava cada acesso em C:\inetpub\logs\LogFiles\W3SVC2, com data, hora, IP, página pedida e código de resposta.
 
 Evidência: 15-log-iis.png
+
+![15-log-iis.png](evidencias/15-log-iis.png)
 
 ## Vídeo
 
