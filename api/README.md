@@ -90,34 +90,129 @@ Quando os dados enviados estão errados, a API responde 400. Quando não encontr
 Os prints dos testes no Insomnia estão na pasta evidencias:
 
 - 01-healthcheck.png: a API respondendo no /healthcheck.
+
+  ![01-healthcheck.png](evidencias/01-healthcheck.png)
+
 - 02-cadastrar-lixeira.png: cadastro de lixeira, status 201.
+
+  ![02-cadastrar-lixeira.png](evidencias/02-cadastrar-lixeira.png)
+
 - 03-listar-lixeiras.png: lista paginada de lixeiras, status 200.
+
+  ![03-listar-lixeiras.png](evidencias/03-listar-lixeiras.png)
+
 - 04-buscar-por-id.png: busca de lixeira pelo id, status 200.
+
+  ![04-buscar-por-id.png](evidencias/04-buscar-por-id.png)
+
 - 05-atualizar-lixeira.png: atualização da lixeira, status 200.
+
+  ![05-atualizar-lixeira.png](evidencias/05-atualizar-lixeira.png)
+
 - 06-excluir-lixeira.png: exclusão lógica da lixeira, status 204.
+
+  ![06-excluir-lixeira.png](evidencias/06-excluir-lixeira.png)
+
 - 07-buscar-excluida-404.png: busca da lixeira excluída, status 404.
+
+  ![07-buscar-excluida-404.png](evidencias/07-buscar-excluida-404.png)
+
 - 08-cadastro-invalido-400.png: cadastro de lixeira com dados inválidos, status 400.
+
+  ![08-cadastro-invalido-400.png](evidencias/08-cadastro-invalido-400.png)
+
 - 09-cadastrar-ocorrencia.png: ocorrência aberta sem foto, status 201, com status ABERTA.
+
+  ![09-cadastrar-ocorrencia.png](evidencias/09-cadastrar-ocorrencia.png)
+
 - 10-ocorrencia-com-foto.png: ocorrência aberta com foto em base64, status 201.
+
+  ![10-ocorrencia-com-foto.png](evidencias/10-ocorrencia-com-foto.png)
+
 - 11-listar-ocorrencias.png: lista paginada de ocorrências, com a mais nova primeiro.
+
+  ![11-listar-ocorrencias.png](evidencias/11-listar-ocorrencias.png)
+
 - 12-buscar-ocorrencia.png: busca de ocorrência pelo id, status 200.
+
+  ![12-buscar-ocorrencia.png](evidencias/12-buscar-ocorrencia.png)
+
 - 13-status-em-andamento.png: status muda para EM_ANDAMENTO, e a data de resolução continua vazia.
+
+  ![13-status-em-andamento.png](evidencias/13-status-em-andamento.png)
+
 - 14-status-resolvida.png: status muda para RESOLVIDA, e a data de resolução é preenchida.
+
+  ![14-status-resolvida.png](evidencias/14-status-resolvida.png)
+
 - 15-status-invalido-400.png: status que não existe, status 400.
+
+  ![15-status-invalido-400.png](evidencias/15-status-invalido-400.png)
+
 - 16-ocorrencia-invalida-400.png: ocorrência sem descrição e com UF errada, status 400.
+
+  ![16-ocorrencia-invalida-400.png](evidencias/16-ocorrencia-invalida-400.png)
+
 - 17-foto-grande-400.png: foto acima do limite de tamanho, status 400.
+
+  ![17-foto-grande-400.png](evidencias/17-foto-grande-400.png)
+
 - 18-excluir-ocorrencia.png: exclusão lógica da ocorrência, status 204.
+
+  ![18-excluir-ocorrencia.png](evidencias/18-excluir-ocorrencia.png)
+
 - 19-buscar-excluida-404.png: busca da ocorrência excluída, status 404.
+
+  ![19-buscar-excluida-404.png](evidencias/19-buscar-excluida-404.png)
+
 - 20-status-excluida-404.png: tentativa de mudar o status de uma ocorrência excluída, status 404.
+
+  ![20-status-excluida-404.png](evidencias/20-status-excluida-404.png)
+
 - 21-enviar-leitura.png: envio de uma leitura do sensor, status 201.
+
+  ![21-enviar-leitura.png](evidencias/21-enviar-leitura.png)
+
 - 22-nivel-atualizado.png: a lixeira com o nível atual atualizado para 88.
+
+  ![22-nivel-atualizado.png](evidencias/22-nivel-atualizado.png)
+
 - 23-listar-leituras.png: leituras de uma lixeira, status 200.
+
+  ![23-listar-leituras.png](evidencias/23-listar-leituras.png)
+
 - 24-leitura-lixeira-inexistente-404.png: leitura para um código que não existe, status 404 com mensagem.
+
+  ![24-leitura-lixeira-inexistente-404.png](evidencias/24-leitura-lixeira-inexistente-404.png)
+
 - 25-leitura-invalida-400.png: leitura com distância negativa e nível acima de 100, status 400.
+
+  ![25-leitura-invalida-400.png](evidencias/25-leitura-invalida-400.png)
+
 - 26-enviar-previsao.png: envio de uma previsão, status 201.
+
+  ![26-enviar-previsao.png](evidencias/26-enviar-previsao.png)
+
 - 27-buscar-previsao.png: previsão mais recente da lixeira, status 200.
+
+  ![27-buscar-previsao.png](evidencias/27-buscar-previsao.png)
+
 - 28-previsao-inexistente-404.png: lixeira sem previsão, status 404 com mensagem.
+
+  ![28-previsao-inexistente-404.png](evidencias/28-previsao-inexistente-404.png)
+
 - 29-previsao-invalida-400.png: probabilidade acima de 1, status 400.
+
+  ![29-previsao-invalida-400.png](evidencias/29-previsao-invalida-400.png)
+
 - 30-codigo-repetido-409.png: cadastro com um código que já existe, status 409 com mensagem.
+
+  ![30-codigo-repetido-409.png](evidencias/30-codigo-repetido-409.png)
+
 - 31-codigo-excluida-409.png: o código de uma lixeira excluída também não pode ser usado de novo, status 409.
+
+  ![31-codigo-excluida-409.png](evidencias/31-codigo-excluida-409.png)
+
 - 32-atualizar-codigo-repetido-409.png: atualização para o código de outra lixeira, status 409.
+
+  ![32-atualizar-codigo-repetido-409.png](evidencias/32-atualizar-codigo-repetido-409.png)
